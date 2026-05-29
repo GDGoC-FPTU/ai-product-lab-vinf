@@ -63,11 +63,11 @@ Hãy sử dụng **4 Lenses** dưới đây để quét qua hoạt động vận
 ### 📝 List bài toán của tôi:
 | # | Subsidiary (VinFast/Xanh SM...) | Lens | Mô tả ngắn bài toán |
 |---|----------------------------------|------|---------------------|
-| 1 | | | |
-| 2 | | | |
-| 3 | | | |
-| 4 | | | |
-| 5 | | | |
+| 1 | VinFast | Repetitive + Time-consuming | Đối soát chuỗi cung ứng linh kiện toàn cầu: nhân viên phải so khớp thủ công hàng nghìn vận đơn, tờ khai hải quan, hóa đơn nhà cung ứng với ERP mỗi ngày; hệ quả chậm thông quan/thanh toán, dễ lệch số liệu do kiểm tra bằng mắt. |
+| 2 | Vinhomes | Time-consuming + Stakeholder Pain | Kiểm duyệt ảnh và phân loại sự cố hạ tầng đô thị từ app cư dân (hỏng đèn, nứt sân, rác thải) còn làm tay rồi chuyển bộ phận kỹ thuật; hệ quả xử lý kéo dài, cư dân phàn nàn vì phản hồi chậm, BQL quá tải mùa cao điểm bảo trì. |
+| 3 | Xanh SM | Stakeholder Pain + AI-upgrade | Điều phối xe chưa tối ưu theo dung lượng pin và khoảng cách đón khách, tài xế nhận cuốc rồi hủy vì pin thấp; hệ quả khách bị hủy chuyến, tài xế mất điểm hiệu suất và lãng phí thời gian chạy đến trạm sạc. |
+| 4 | Vinpearl | AI-upgrade + Repetitive | Chatbot/CSKH đặt phòng-vé còn theo kịch bản rập khuôn, chưa tự gợi ý combo theo hành vi, thời tiết, sở thích gia đình; hệ quả conversion kênh chat thấp và thất thoát doanh thu upsell (ẩm thực, spa). |
+| 5 | Vinmec | Time-consuming + AI-upgrade | Bác sĩ mất nhiều thời gian tóm tắt bệnh án thủ công, nhân viên hành chính phải rà hồ sơ để xử lý bảo hiểm bảo lãnh; hệ quả giảm thời gian thăm khám trực tiếp và kéo dài thủ tục ra viện/thanh toán bảo hiểm. |
 
 ---
 
@@ -77,24 +77,93 @@ Chọn **top 3 bài toán** từ danh sách trên và hoàn thiện **3 Quick Pr
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│ QUICK PROBLEM CARD #___                                     │
+│ QUICK PROBLEM CARD #1                                       │
 │                                                             │
-│ Bài toán (1 câu): ________________________________________  │
-│ Công ty thành viên: [ ] VinFast  [ ] Xanh SM  [ ] Vinhomes  │
+│ Bài toán (1 câu): Tối ưu điều phối cuốc xe điện theo       │
+│ pin và quãng đường đón để giảm hủy chuyến do pin thấp.     │
+│ Công ty thành viên: [ ] VinFast  [x] Xanh SM  [ ] Vinhomes │
 │                     [ ] Vinmec   [ ] Khác (Ghi rõ)________  │
 │                                                             │
-│ Ai đang đau (Actor)? ______________________________________ │
+│ Ai đang đau (Actor)? Tài xế, điều phối viên, khách giờ cao │
+│ điểm.                                                       │
 │                                                             │
-│ Workflow thủ công hiện tại (3-5 bước):                      │
-│   1. ___ ──> 2. ___ ──> 3. ___ ──> 4. ___                   │
+│ Workflow thủ công hiện tại (3-5 bước):                     │
+│   1. Hệ thống đẩy cuốc gần nhất                              │
+│   2. Tài xế tự kiểm tra pin                                  │
+│   3. Pin yếu thì hủy/xin chuyển cuốc                         │
+│   4. Tổng đài phân lại cuốc                                  │
 │                                                             │
-│ Bước nào tốn thời gian/lỗi nhất? ___ (⏱ ___ phút/lượt)      │
-│ AI có thể nhảy vào hỗ trợ ở bước nào? _____________________ │
+│ Bước nào tốn thời gian/lỗi nhất? Bước 3 (⏱ ~3 phút/lượt)    │
+│ AI có thể nhảy vào hỗ trợ ở bước nào? Bước 1-2: scoring    │
+│ phù hợp tài xế-cuốc theo pin, kẹt xe, trạm sạc.            │
 │                                                             │
-│ Đo thành công bằng gì (Metric có số)? ______________________ │
-│   VD: "Giảm thời gian soạn phản hồi từ 10 min ──> under 2 min"│
+│ Đo thành công bằng gì (Metric có số)?                       │
+│ - Hủy cuốc do pin: ~6% -> <2.5%                             │
+│ - Re-dispatch: ~3 phút -> <60 giây                          │
+│ - Tỷ lệ hoàn thành cuốc giờ cao điểm: +>=8%                 │
 │                                                             │
-│ Quick Architecture: [ ] No AI  [ ] Rule  [ ] LLM  [ ] Agent │
+│ Quick Architecture: [ ] No AI  [ ] Rule  [x] LLM  [x] Agent│
+└─────────────────────────────────────────────────────────────┘
+```
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│ QUICK PROBLEM CARD #2                                       │
+│                                                             │
+│ Bài toán (1 câu): Tự động tóm tắt bệnh án và trích xuất    │
+│ dữ liệu bảo hiểm để rút ngắn thủ tục ra viện.              │
+│ Công ty thành viên: [ ] VinFast  [ ] Xanh SM  [ ] Vinhomes │
+│                     [x] Vinmec   [ ] Khác (Ghi rõ)________  │
+│                                                             │
+│ Ai đang đau (Actor)? Bác sĩ, điều dưỡng, nhân viên BHYT,   │
+│ bệnh nhân chờ ra viện.                                     │
+│                                                             │
+│ Workflow thủ công hiện tại (3-5 bước):                     │
+│   1. Bác sĩ đọc hồ sơ và gõ tóm tắt                          │
+│   2. Điều dưỡng rà thuốc/chỉ định                            │
+│   3. BHYT trích mã dịch vụ/chứng từ                          │
+│   4. Hồ sơ trả qua lại để sửa sai                            │
+│                                                             │
+│ Bước nào tốn thời gian/lỗi nhất? Bước 1 (⏱ ~12-18 phút/lượt)│
+│ AI có thể nhảy vào hỗ trợ ở bước nào? Bước 1 và 3: tạo      │
+│ tóm tắt có cấu trúc + trích xuất trường bảo hiểm.           │
+│                                                             │
+│ Đo thành công bằng gì (Metric có số)?                       │
+│ - Tóm tắt bệnh án: ~15 phút -> <5 phút/hồ sơ                │
+│ - Vòng sửa hồ sơ BHYT: 2.0 -> <=1.2 vòng                    │
+│ - Thời gian hoàn tất ra viện: giảm >=20%                    │
+│                                                             │
+│ Quick Architecture: [ ] No AI  [ ] Rule  [x] LLM  [ ] Agent│
+└─────────────────────────────────────────────────────────────┘
+```
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│ QUICK PROBLEM CARD #3                                       │
+│                                                             │
+│ Bài toán (1 câu): Tự động phân loại phản ánh sự cố hạ tầng │
+│ từ ảnh cư dân và định tuyến đúng tổ kỹ thuật.              │
+│ Công ty thành viên: [ ] VinFast  [ ] Xanh SM  [x] Vinhomes │
+│                     [ ] Vinmec   [ ] Khác (Ghi rõ)________  │
+│                                                             │
+│ Ai đang đau (Actor)? BQL tòa nhà, kỹ thuật bảo trì, cư dân.│
+│                                                             │
+│ Workflow thủ công hiện tại (3-5 bước):                     │
+│   1. Cư dân gửi ảnh + mô tả                                  │
+│   2. BQL đọc và phân loại thủ công                           │
+│   3. Chuyển ticket cho đội kỹ thuật                          │
+│   4. Chuyển sai thì trả lại để phân lại                      │
+│                                                             │
+│ Bước nào tốn thời gian/lỗi nhất? Bước 2 (⏱ ~4-6 phút/lượt)  │
+│ AI có thể nhảy vào hỗ trợ ở bước nào? Bước 2-3: vision +   │
+│ LLM nhận diện sự cố, độ khẩn cấp, đội xử lý phù hợp.        │
+│                                                             │
+│ Đo thành công bằng gì (Metric có số)?                       │
+│ - Phân loại ticket: ~5 phút -> <1.5 phút                    │
+│ - Chuyển sai đội: ~15% -> <5%                               │
+│ - First response trong 15 phút: ~62% -> >=85%               │
+│                                                             │
+│ Quick Architecture: [ ] No AI  [ ] Rule  [x] LLM  [ ] Agent│
 └─────────────────────────────────────────────────────────────┘
 ```
 
