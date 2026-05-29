@@ -14,8 +14,18 @@ import os
 import sys
 from typing import Any
 
+if sys.stdout.encoding != 'utf-8':
+    try:
+        if hasattr(sys.stdout, 'reconfigure'):
+            sys.stdout.reconfigure(encoding='utf-8')
+        if hasattr(sys.stderr, 'reconfigure'):
+            sys.stderr.reconfigure(encoding='utf-8')
+    except Exception:
+        pass
+
 # Standard Model Identifier
 GEMINI_MODEL = "gemini-2.5-flash"
+
 
 # ===========================================================================
 # 🛡️ Operational Boundaries to Enforce via System Prompt:
