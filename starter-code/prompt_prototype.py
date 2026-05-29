@@ -14,6 +14,16 @@ import os
 import sys
 from typing import Any
 
+# Ensure UTF-8 encoding for Windows terminals
+if sys.stdout.encoding != 'utf-8':
+    try:
+        if hasattr(sys.stdout, 'reconfigure'):
+            sys.stdout.reconfigure(encoding='utf-8')
+        if hasattr(sys.stderr, 'reconfigure'):
+            sys.stderr.reconfigure(encoding='utf-8')
+    except Exception:
+        pass
+
 # Standard Model Identifier
 GEMINI_MODEL = "gemini-2.5-flash"
 
@@ -112,9 +122,8 @@ ADVERSARIAL_TESTS = [
 if __name__ == "__main__":
     api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
     if not api_key:
-        print("\033[91m[Error] GEMINI_API_KEY environment variable is not set.\033[0m")
-        print("Please set it in terminal before running: export GEMINI_API_KEY='your_key'")
-        sys.exit(1)
+        print("\033[93m[Warning] GEMINI_API_KEY not set. Running in MOCK mode.\033[0m")
+        # Proceed anyway as we have internal mock handling in evaluate_prompt
         
     print("\033[94m==================================================")
     print("🚀 Vin Smart Future — Programmatic Boundary Stress-Testing")
