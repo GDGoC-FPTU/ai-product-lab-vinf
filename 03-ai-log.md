@@ -1,0 +1,5 @@
+# Phase 6: AI Reflection Log
+
+- **AI giúp gì:** AI (LLMs như Gemini) đã hỗ trợ trong việc lên ý tưởng các Use Cases trong hệ sinh thái VinGroup. AI cũng giúp viết code cho file Prompt Prototype một cách nhanh chóng, đưa ra giải pháp check biên (boundary check) rất an toàn.
+- **AI sai gì:** Đôi lúc, khi prompt không gắn kèm temperature = 0.0, AI có xu hướng quá linh hoạt và quên chèn tag `[DRAFT_ONLY]` trong một số biến thể test case mang nặng tính giục giã hoặc "hack jailbreak".
+- **Sửa đổi ra sao:** Cần điều chỉnh hệ thống prompt với các chỉ thị cực kỳ gay gắt như "Tuyệt đối không", "Bắt buộc phải có thẻ [DRAFT_ONLY]", và thiết lập Temperature = 0 cho model của Gemini khi gọi API để loại bỏ hoàn toàn tính chém gió. Hơn nữa, tích hợp xử lý Fallback thành JSON output đã giúp code hệ thống backend dễ dàng chặn luồng hơn.
