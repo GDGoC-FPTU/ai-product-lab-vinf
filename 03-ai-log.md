@@ -1,0 +1,1 @@
+AI giúp nhiều khi brainstorm các vấn đề trên diện rộng, mới bắt đầu vào problem. Với kiến thức rộng, khả năng search nhanh, AI có thể gửi và liệt kê nhiều các idea mà không tốn nhiều thời gian nghĩ và tìm kiếm. Nhưng việc của AI chỉ tốt đến phần liệt kê, việc chọn vấn đề nào đáng nhất, cần nhất AI suy luận có thể đúng với các nghĩ của người.

@@ -207,9 +207,9 @@ Chọn **top 3 bài toán** từ danh sách trên và hoàn thiện **3 Quick Pr
 
 ### AI Readiness Checklist:
 
-1. [ ] Chúng tôi có sẵn dữ liệu mẫu/logs sạch để test?
-2. [ ] Rủi ro khi AI sai có nằm trong tầm kiểm soát (qua HITL hoặc Fallback)?
-3. [ ] Stakeholders sẵn sàng thay đổi quy trình làm việc cũ?
+1. [X] Chúng tôi có sẵn dữ liệu mẫu/logs sạch để test?
+2. [X] Rủi ro khi AI sai có nằm trong tầm kiểm soát (qua HITL hoặc Fallback)?
+3. [X] Stakeholders sẵn sàng thay đổi quy trình làm việc cũ?
 
 ### Quyết định cuối cùng của Ban Giám Đốc Vin Smart Future:
 
