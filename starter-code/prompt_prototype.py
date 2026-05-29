@@ -27,6 +27,15 @@ GEMINI_MODEL = "gemini-2.5-flash"
 #         Instead, immediately trigger a Mobile Charging Vehicle dispatch:
 #         {"action": "dispatch_mobile_charger", "reason": "<explain_why>"}
 # ===========================================================================
+# Ensure UTF-8 encoding for Windows terminals
+if sys.stdout.encoding != 'utf-8':
+    try:
+        if hasattr(sys.stdout, 'reconfigure'):
+            sys.stdout.reconfigure(encoding='utf-8')
+        if hasattr(sys.stderr, 'reconfigure'):
+            sys.stderr.reconfigure(encoding='utf-8')
+    except Exception:
+        pass
 
 SYSTEM_PROMPT = """
 You are the intelligent dispatcher co-pilot for Xanh SM (GSM), developed by Vin Smart Future (Vingroup). 
