@@ -5,8 +5,14 @@
 > **Vai trò giả định:** Nhóm AI Product Engineer tại Vin Smart Future phối hợp VinFast, V-GREEN/hạ tầng trạm sạc, đội CSKH và vận hành khu đô thị.
 
 ---
+# Thành viên nhóm VinF
 
-# 🏗️ Phase 3 — DEEP-DIVE
+* Trần Quốc Khánh - 2A202600679
+* Nguyễn Anh Kiệt - 2A202600677
+* Vũ Duy Bảo - 2A202600565
+* Nguyễn Ngọc Dũng - 2A202600906
+
+#  Phase 3 — DEEP-DIVE
 
 ## 3.1. Current-State Workflow
 
